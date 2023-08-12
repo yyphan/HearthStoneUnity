@@ -43,11 +43,13 @@ public class GameManager : MonoBehaviour
         _curTurn = _curTurn == Turn.Player ? Turn.Opponent : Turn.Player;
         if (_curTurn == Turn.Player)
         {
+            OpponentController.EndTurn();
             PlayerController.StartNewTurn();
             StartCoroutine(ShowYourTurnBanner());
         }
         else
         {
+            PlayerController.EndTurn();
             OpponentController.StartNewTurn();
         }
         ToggleEndTurnBtnDisplay();
@@ -63,7 +65,15 @@ public class GameManager : MonoBehaviour
     {
         YourTurnBannerUI.SetActive(true);
 
-        yield return new WaitForSeconds(0.8f);
+        YourTurnBannerUI.transform.localScale = Vector3.zero;
+
+        for (int i = 0; i < 60; i++)
+        {
+            YourTurnBannerUI.transform.localScale += new Vector3(0.025f, 0.025f, 0.025f);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
 
         YourTurnBannerUI.SetActive(false);
     }

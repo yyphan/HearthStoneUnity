@@ -29,4 +29,10 @@ public class CardDisplayComponent : MonoBehaviour
     {
         return cardData;
     }
+
+
+    public virtual void SetFrameHighlight(bool isActive)
+    {
+
+    }
 }

@@ -43,7 +43,7 @@ public class OpponentHeroController : HeroController
     {
         yield return new WaitForSeconds(0.8f);
 
-        MinionCardDisplayComponent leftMostCard = (MinionCardDisplayComponent) HeroHands.GetCardsInHand()[0];
+        CardDisplayComponent leftMostCard = (CardDisplayComponent) HeroHands.GetCardsInHand()[0];
         TryPlayCard(leftMostCard);
 
         int tauntCount = Random.Range(-_tauntMessages.Count, _tauntMessages.Count);

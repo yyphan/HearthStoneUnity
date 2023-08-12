@@ -51,4 +51,16 @@ public class Hands : MonoBehaviour
     {
         return _cardsInHand;
     }
+
+    public void SetHighlight(bool isActive)
+    {
+        foreach (CardDisplayComponent card in _cardsInHand)
+            card.SetFrameHighlight(isActive);
+    }
+
+    public void SetHighlightBasedOnMana(int curMana)
+    {
+        foreach (CardDisplayComponent card in _cardsInHand)
+            card.SetFrameHighlight(card.GetCardData().Cost <= curMana);
+    }
 }

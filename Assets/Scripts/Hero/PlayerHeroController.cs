@@ -19,4 +19,9 @@ public class PlayerHeroController : HeroController
         base.SummonMinion(card);
         PlayerStageManager.instance.SummonMinion(card);
     }
+
+    public void UpdatePlayableCards(int curMana)
+    {
+        HeroHands.SetHighlightBasedOnMana(curMana);
+    }
 }

@@ -19,9 +19,15 @@ public class HeroController : Attackable
 
     public virtual void StartNewTurn()
     {
-        HeroManaController.GrowMana();
         HeroStageManager.StartNewTurn();
         DrawCard();
+        HeroHands.SetHighlight(true);
+        HeroManaController.GrowMana();
+    }
+
+    public virtual void EndTurn()
+    {
+        HeroHands.SetHighlight(false);
     }
 
     public void DrawCard()
@@ -33,13 +39,13 @@ public class HeroController : Attackable
         }
     }
 
-    public bool TryPlayCard(MinionCardDisplayComponent card)
+    public bool TryPlayCard(CardDisplayComponent card)
     {
         int cost = card.GetCardData().Cost;
         if (HeroManaController.TryCostMana(cost))
         {
             HeroHands.RemoveCard(card);
-            SummonMinion(card.GetMinionCardData());
+            SummonMinion((MinionCardData)card.GetCardData());
             return true;
         }
         return false;

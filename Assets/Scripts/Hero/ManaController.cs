@@ -47,5 +47,8 @@ public class ManaController : MonoBehaviour
         {
             UIGems[i].SetActive(i < _curMana);
         }
+
+        // Update playable cards
+        PlayerHeroController.instance.UpdatePlayableCards(_curMana);
     }
 }

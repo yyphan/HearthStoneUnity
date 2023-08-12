@@ -1,0 +1,4 @@
+repository "Hearthstone HJF@gamedevgeneral@cloud.cn"
+  path "/"
+    smartbranch "/main" 
+     

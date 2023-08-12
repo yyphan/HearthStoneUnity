@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardBackDisplayComponent : MinionCardDisplayComponent
+public class CardBackDisplayComponent : CardDisplayComponent
 {
     public override void SetupCardDisplay(CardData data)
     {
