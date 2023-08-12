@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa45f47b9e5230f48bdc57e90eefa3a8, type: 3}
+  m_Name: Spell_Card_Data_Blizzard
+  m_EditorClassIdentifier: 
+  CardName: Blizzard
+  Description: It is freezing
+  CardImage: {fileID: 21300000, guid: 34aee80411a17c44fb39fc4ea087ec20, type: 3}
+  Cost: 6
