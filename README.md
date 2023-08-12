@@ -2,4 +2,4 @@
 Implementing HearthStone
 
 # Demo
-[A Vertical Slice](https://youtu.be/IXWllprFd1c)
+[A Vertical Slice](https://youtu.be/dTmy3RgfOx8)
