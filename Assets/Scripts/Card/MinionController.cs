@@ -29,6 +29,8 @@ public class MinionController : Attackable
         attackValue = _minionData.Attack;
         _maxAttackTimes = _minionData.MaxAttackTimes;
         healthComponent.Init(_minionData.HP);
+        if (minionData.IsCharge)
+            RecoverAttackTimes();
     }
 
     public MinionCardData GetMinionData()
@@ -49,6 +51,7 @@ public class MinionController : Attackable
     public void RecoverAttackTimes()
     {
         _curAttackTimes = _maxAttackTimes;
+        UpdateFrameHighlight();
     }
 
     public void Attack(Attackable target)

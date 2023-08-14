@@ -4,13 +4,13 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     public List<CardData> Candidates;
-    public int StartingNumber = 15;
+    public int TotalNumber = 15;
     private Stack<CardData> _deck;
 
     private void Awake()
     {
         _deck = new Stack<CardData>();
-        for (int i = 0; i < StartingNumber; i++)
+        for (int i = 0; i < TotalNumber; i++)
         {
             int idx = Random.Range(0, Candidates.Count);
             _deck.Push(Candidates[idx]);

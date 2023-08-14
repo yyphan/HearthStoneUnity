@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52ab8119484fbb409146bb347da3500, type: 3}
+  m_Name: Minion_Card_Data_DeathJaw
+  m_EditorClassIdentifier: 
+  CardName: DeathJaw
+  Description: 
+  CardImage: {fileID: 21300000, guid: adabbd336ec5a234bb3d216ec18e1adf, type: 3}
+  Cost: 10
+  Attack: 12
+  MaxAttackTimes: 1
+  HP: 12
+  Rarity: 3
+  IsTaunt: 0

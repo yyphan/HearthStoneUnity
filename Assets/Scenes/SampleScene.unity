@@ -1743,9 +1743,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Candidates:
-  - {fileID: 11400000, guid: 75b3fa8ed7bed804dbdbcd55012cd6dd, type: 2}
+  - {fileID: 11400000, guid: f233c636f1cd0534b8a2a7252dc01af4, type: 2}
+  - {fileID: 11400000, guid: 8ed89e0f197d7824293decdeef9b1613, type: 2}
+  - {fileID: 11400000, guid: 9414cd882a0a23d4395149ef3cad2c9e, type: 2}
+  - {fileID: 11400000, guid: 813833f11c054dc498d4f11c0dffe2ad, type: 2}
   - {fileID: 11400000, guid: 8e378bb8b636b944dac766f16c880011, type: 2}
-  StartingNumber: 15
+  - {fileID: 11400000, guid: 75b3fa8ed7bed804dbdbcd55012cd6dd, type: 2}
+  - {fileID: 11400000, guid: dd50529d0b999c4488edd4bb869db775, type: 2}
+  - {fileID: 11400000, guid: 239eb387928118140aaff0333ab80abf, type: 2}
+  - {fileID: 11400000, guid: fcc29332260f936429b64d6f8bbbcabe, type: 2}
+  - {fileID: 11400000, guid: 36c1ef17a6f4d1e4681450bbca9b2152, type: 2}
+  TotalNumber: 15
 --- !u!1 &553740751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,7 +3164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackValue: 0
   healthComponent: {fileID: 0}
-  HeroDataObject: {fileID: 11400000, guid: f259e7d74b2c4f0428675df163ee5af7, type: 2}
+  HeroDataObject: {fileID: 11400000, guid: f5e146b988de4e74387b61cea226691c, type: 2}
   HeroImageHolder: {fileID: 1981672508}
   HeroManaController: {fileID: 1251332369}
   HeroHands: {fileID: 1807769071}
@@ -3348,8 +3356,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Candidates:
+  - {fileID: 11400000, guid: f233c636f1cd0534b8a2a7252dc01af4, type: 2}
+  - {fileID: 11400000, guid: 8ed89e0f197d7824293decdeef9b1613, type: 2}
+  - {fileID: 11400000, guid: 9414cd882a0a23d4395149ef3cad2c9e, type: 2}
+  - {fileID: 11400000, guid: 813833f11c054dc498d4f11c0dffe2ad, type: 2}
   - {fileID: 11400000, guid: 8e378bb8b636b944dac766f16c880011, type: 2}
-  StartingNumber: 15
+  - {fileID: 11400000, guid: 75b3fa8ed7bed804dbdbcd55012cd6dd, type: 2}
+  - {fileID: 11400000, guid: dd50529d0b999c4488edd4bb869db775, type: 2}
+  - {fileID: 11400000, guid: 239eb387928118140aaff0333ab80abf, type: 2}
+  - {fileID: 11400000, guid: fcc29332260f936429b64d6f8bbbcabe, type: 2}
+  - {fileID: 11400000, guid: 36c1ef17a6f4d1e4681450bbca9b2152, type: 2}
+  TotalNumber: 15
 --- !u!1 &1184726678
 GameObject:
   m_ObjectHideFlags: 0

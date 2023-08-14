@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c52ab8119484fbb409146bb347da3500, type: 3}
-  m_Name: Minion_Card_Data_Knight
+  m_Name: Minion_Card_Data_ChargingBolts
   m_EditorClassIdentifier: 
-  CardName: Knight
-  Description: Nothing to see here
-  CardImage: {fileID: 21300000, guid: 3b52df77742ad9f488ef57f8851f8ebf, type: 3}
-  Cost: 3
-  Attack: 3
-  HP: 4
-  Rarity: 3
+  CardName: Charging Bolts
+  Description: Charge
+  CardImage: {fileID: 21300000, guid: 3bd43ff87e60ca14398146714c78cbca, type: 3}
+  Cost: 4
+  Rarity: 2
+  Attack: 4
+  MaxAttackTimes: 1
+  HP: 3
+  IsTaunt: 0
+  IsCharge: 1
+  IsWindFury: 0
