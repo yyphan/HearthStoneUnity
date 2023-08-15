@@ -81,6 +81,7 @@ public class MinionController : Attackable
 
     private IEnumerator AttackAnimation(Attackable target, Vector3 targetPos)
     {
+        GameManager.instance.LockDragging(true); // lock dragging before animation finishes
         Vector3 initPos = gameObject.transform.position;
         Vector3 dirVector = (targetPos - initPos).normalized;
         while ((gameObject.transform.position - targetPos).magnitude > 1)
@@ -95,5 +96,6 @@ public class MinionController : Attackable
             yield return null;
         }
         Shake();
+        GameManager.instance.LockDragging(false);
     }
 }

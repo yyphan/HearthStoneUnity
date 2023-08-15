@@ -24,14 +24,14 @@ public class ManaController : MonoBehaviour, ITurnAware
         SetCurMana(0);
     }
 
-    public bool TryCostMana(int cost)
+    public void CostMana(int cost)
     {
-        if (_curMana < cost)
-        {
-            return false;
-        }
         SetCurMana(_curMana - cost);
-        return true;
+    }
+
+    public bool CanCostMana(int cost)
+    {
+        return _curMana >= cost;
     }
 
     protected void SetCurMana(int value)

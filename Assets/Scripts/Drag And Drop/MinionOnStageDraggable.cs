@@ -5,30 +5,23 @@ using UnityEngine.EventSystems;
 
 public class MinionOnStageDraggable : Draggable
 {
-    private bool _isDragValid = false;
     private Attackable _target;
 
-    public void SetDragValid(Attackable target)
+    public void SetTarget(Attackable target)
     {
-        _isDragValid = true;
         _target = target;
-    }
-
-    public void SetDragInvalid()
-    {
-        _isDragValid = false;
     }
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
         if (!gameObject.GetComponent<MinionController>().CanAttack())
         {
-            GameManager.instance.ShowAlert("Minion cannot move any more");
+            GameManager.instance.ShowAlert("Minion cannot move");
             eventData.pointerDrag = null;
             return;
         }
         base.OnBeginDrag(eventData);
-        SetDragInvalid();
+        SetIsDragValid(false);
     }
 
     public override void OnEndDrag(PointerEventData eventData)

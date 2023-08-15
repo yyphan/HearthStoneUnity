@@ -5,39 +5,34 @@ using UnityEngine.EventSystems;
 
 public class MinionCardDraggable : Draggable
 {
-    public static bool IsDragValid = false;
-    public static bool IsDragging = false;
+    public static MinionCardDisplayComponent CardBeingDragged = null;
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);
-        IsDragging = true;
-        IsDragValid = false;
+        CardBeingDragged = gameObject.GetComponent<MinionCardDisplayComponent>();
+        SetIsDragValid(false);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-        IsDragging = false;
-        if (IsDragValid)
+        if (_isDragValid)
         {
             MinionCardDisplayComponent cardDisplay = gameObject.GetComponent<MinionCardDisplayComponent>();
-            if (!cardDisplay)
+            if (cardDisplay == null)
                 Debug.LogError("CardDraggable: CardDisplay not found");
-            if (PlayerHeroController.instance.TryPlayCard(cardDisplay))
+            if (PlayerHeroController.instance.CanPlayCard(cardDisplay))
             {
+                PlayerHeroController.instance.PlayCard(cardDisplay);
                 Destroy(gameObject);
-            }
-            else
-            {
-                ResetPosition();
-                PlayerStageManager.instance.ArrangePositionsStatic();
+                return;
             }
         }
-        else
-        {
-            ResetPosition();
-            PlayerStageManager.instance.ArrangePositionsStatic();
-        }
+
+        ResetPosition();
+        PlayerStageManager.instance.ArrangePositionsStatic();
+
+        CardBeingDragged = null;
     }
 }

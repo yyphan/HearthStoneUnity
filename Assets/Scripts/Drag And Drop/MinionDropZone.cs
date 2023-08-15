@@ -13,12 +13,13 @@ public class MinionDropZone : MonoBehaviour, IDropHandler
             // YOU MUST ATTACK THAT MINION WITH TAUNT
             if (OpponentStageManager.instance.AreThereTaunts() && !IsThisTaunt())
             {
-                minionDraggable.SetDragInvalid();
+                minionDraggable.SetIsDragValid(false);
                 GameManager.instance.ShowAlert("YOU MUST ATTACK THAT MINION WITH TAUNT");
             }
             else
             {
-                minionDraggable.SetDragValid(GetComponentInParent<Attackable>());
+                minionDraggable.SetIsDragValid(true);
+                minionDraggable.SetTarget(GetComponentInParent<Attackable>());
             }
         }
     }

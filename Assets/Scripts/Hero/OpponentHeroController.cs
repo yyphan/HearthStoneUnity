@@ -44,7 +44,8 @@ public class OpponentHeroController : HeroController
         yield return new WaitForSeconds(0.8f);
 
         CardDisplayComponent leftMostCard = (CardDisplayComponent) HeroHands.GetCardsInHand()[0];
-        TryPlayCard(leftMostCard);
+        if (CanPlayCard(leftMostCard))
+            PlayCard(leftMostCard);
 
         int tauntCount = Random.Range(-_tauntMessages.Count, _tauntMessages.Count);
         if (tauntCount > 0) 

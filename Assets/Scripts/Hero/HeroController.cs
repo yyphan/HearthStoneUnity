@@ -38,16 +38,23 @@ public class HeroController : Attackable, ITurnAware
         }
     }
 
-    public bool TryPlayCard(CardDisplayComponent card)
+    public void PlayCard(CardDisplayComponent card)
     {
+        HeroManaController.CostMana(card.GetCardData().Cost);
+        HeroHands.RemoveCard(card);
+        SummonMinion((MinionCardData)card.GetCardData());
+    }
+
+    public bool CanPlayCard(CardDisplayComponent card)
+    {
+        if (HeroStageManager.IsStageFull())
+            return false;
+
         int cost = card.GetCardData().Cost;
-        if (HeroManaController.TryCostMana(cost))
-        {
-            HeroHands.RemoveCard(card);
-            SummonMinion((MinionCardData)card.GetCardData());
-            return true;
-        }
-        return false;
+        if (HeroManaController.CanCostMana(cost) == false)
+            return false;
+
+        return true;
     }
 
     protected virtual void SummonMinion(MinionCardData card){ }

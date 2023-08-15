@@ -52,7 +52,16 @@ public class PlayerStageManager : StageManager
     // Update is called once per frame
     void Update()
     {
-        if (MinionCardDraggable.IsDragging && IsMouseWithinDropZone())
+        if (GameManager.instance.IsDraggingLocked())
+            return;
+
+        if (IsMouseWithinDropZone() == false)
+            return;
+
+        if (MinionCardDraggable.CardBeingDragged == null)
+            return;
+
+        if (PlayerHeroController.instance.CanPlayCard(MinionCardDraggable.CardBeingDragged))
             ArrangePositionDynamic(Input.mousePosition.x);
     }
 }

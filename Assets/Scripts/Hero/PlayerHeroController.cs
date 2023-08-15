@@ -7,17 +7,17 @@ public class PlayerHeroController : HeroController
     // Singleton
     public static PlayerHeroController instance;
 
-    public void UpdatePlayableCards(int curMana)
-    {
-        HeroHands.SetHighlightBasedOnMana(curMana);
-    }
-
     protected override void Awake()
     {
         base.Awake();
         if (instance)
             Debug.LogError("PlayerHeroController: more than one instance found");
         instance = this;
+    }
+
+    public void UpdatePlayableCards(int curMana)
+    {
+        HeroHands.SetHighlightBasedOnMana(curMana);
     }
 
     protected override void SummonMinion(MinionCardData card)

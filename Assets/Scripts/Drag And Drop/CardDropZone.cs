@@ -16,9 +16,16 @@ public class CardDropZone : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag && eventData.pointerDrag.GetComponent<MinionCardDraggable>() && !PlayerStageManager.instance.IsStageFull())
-        {
-            MinionCardDraggable.IsDragValid = true;
-        }
+        if (eventData.pointerDrag == null)
+            return;
+
+        MinionCardDraggable minionDraggable = eventData.pointerDrag.GetComponent<MinionCardDraggable>();
+        if (minionDraggable == null)
+            return;
+
+        if (PlayerStageManager.instance.IsStageFull())
+            return;
+        
+        eventData.pointerDrag.GetComponent<MinionCardDraggable>().SetIsDragValid(true);
     }
 }
