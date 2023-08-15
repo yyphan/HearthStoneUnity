@@ -31,8 +31,5 @@ public class CardDisplayComponent : MonoBehaviour
     }
 
 
-    public virtual void SetFrameHighlight(bool isActive)
-    {
-
-    }
+    public virtual void SetFrameHighlight(bool isActive){ }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ManaController : MonoBehaviour
+public class ManaController : MonoBehaviour, ITurnAware
 {
     public TextMeshProUGUI UIText;
     public List<GameObject> UIGems;
@@ -14,11 +14,14 @@ public class ManaController : MonoBehaviour
     private const int MAX_MANA = 10;
     private const string MANA_TEXT_TEMPLATE = "{0}/{1}";
 
-    public void GrowMana()
+    public void StartNewTurn()
     {
-        _availMana = Mathf.Min(MAX_MANA, _availMana + 1);
-        _curMana = _availMana;
-        UpdateUI();
+        GrowMana();
+    }
+
+    public void EndTurn()
+    {
+        SetCurMana(0);
     }
 
     public bool TryCostMana(int cost)
@@ -27,18 +30,23 @@ public class ManaController : MonoBehaviour
         {
             return false;
         }
-        _curMana -= cost;
-        UpdateUI();
+        SetCurMana(_curMana - cost);
         return true;
     }
 
-    public void ReplenishMana(int amount)
+    protected void SetCurMana(int value)
     {
-        _curMana = Mathf.Max(_availMana, _curMana + amount);
+        _curMana = value;
         UpdateUI();
     }
 
-    private void UpdateUI()
+    protected void GrowMana()
+    {
+        _availMana = Mathf.Min(MAX_MANA, _availMana + 1);
+        SetCurMana(_availMana);
+    }
+
+    protected void UpdateUI()
     {
         if (!DisplayUI)
             return;

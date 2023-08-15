@@ -7,17 +7,6 @@ public class OpponentStageManager : StageManager
     // Singleton
     public static OpponentStageManager instance;
 
-    public bool TryRemoveMinion(MinionController minion)
-    {
-        if (MinionsOnStage.Remove(minion))
-        {
-            ArrangePositionsStatic();
-            return true;
-        }
-
-        return false;
-    }
-
     private void Awake()
     {
         if (instance)

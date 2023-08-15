@@ -23,7 +23,7 @@ public class MinionOnStageDraggable : Draggable
     {
         if (!gameObject.GetComponent<MinionController>().CanAttack())
         {
-            Debug.Log("Minion cannot move any more");
+            GameManager.instance.ShowAlert("Minion cannot move any more");
             eventData.pointerDrag = null;
             return;
         }

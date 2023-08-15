@@ -33,11 +33,6 @@ public class MinionController : Attackable
             RecoverAttackTimes();
     }
 
-    public MinionCardData GetMinionData()
-    {
-        return _minionData;
-    }
-
     public bool IsTaunt()
     {
         return _minionData.IsTaunt;

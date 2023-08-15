@@ -6,6 +6,12 @@ public class PlayerHeroController : HeroController
 { 
     // Singleton
     public static PlayerHeroController instance;
+
+    public void UpdatePlayableCards(int curMana)
+    {
+        HeroHands.SetHighlightBasedOnMana(curMana);
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,10 +24,5 @@ public class PlayerHeroController : HeroController
     {
         base.SummonMinion(card);
         PlayerStageManager.instance.SummonMinion(card);
-    }
-
-    public void UpdatePlayableCards(int curMana)
-    {
-        HeroHands.SetHighlightBasedOnMana(curMana);
     }
 }

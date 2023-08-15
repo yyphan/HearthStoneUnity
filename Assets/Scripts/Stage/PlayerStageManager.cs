@@ -8,17 +8,6 @@ public class PlayerStageManager : StageManager
     public static PlayerStageManager instance;
     protected CardDropZone _cardDropZone;
 
-    public bool TryRemoveMinion(MinionController minion)
-    {
-        if (MinionsOnStage.Remove(minion))
-        {
-            ArrangePositionsStatic();
-            return true;
-        }
-
-        return false;
-    }
-
     private void Awake()
     {
         if (instance)

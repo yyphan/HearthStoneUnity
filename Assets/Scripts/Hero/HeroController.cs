@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeroController : Attackable
+public class HeroController : Attackable, ITurnAware
 {
     [Header("Hero Data")]
     public HeroData HeroDataObject;
     public Image HeroImageHolder;
 
+    [Header("Components")]
     public ManaController HeroManaController;
     public Hands HeroHands;
-
-    [Header("Stage")]
     public StageManager HeroStageManager;
 
     private int _fatigePoints = 0;
@@ -21,13 +20,13 @@ public class HeroController : Attackable
     {
         HeroStageManager.StartNewTurn();
         DrawCard();
-        HeroHands.SetHighlight(true);
-        HeroManaController.GrowMana();
+        HeroManaController.StartNewTurn();
     }
 
     public virtual void EndTurn()
     {
-        HeroHands.SetHighlight(false);
+        HeroStageManager.EndTurn();
+        HeroManaController.EndTurn();
     }
 
     public void DrawCard()

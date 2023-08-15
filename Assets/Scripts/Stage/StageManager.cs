@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageManager : MonoBehaviour, ITurnAware
 {
     public List<MinionController> MinionsOnStage;
     public GameObject MinionPrefab;
-    public List<MinionCardData> ToSpawn;
 
     [Header("Display Configs")]
     public float offSet = 150.0f;
@@ -24,6 +23,17 @@ public class StageManager : MonoBehaviour
         ArrangePositionsStatic();
     }
 
+    public bool TryRemoveMinion(MinionController minion)
+    {
+        if (MinionsOnStage.Remove(minion))
+        {
+            ArrangePositionsStatic();
+            return true;
+        }
+
+        return false;
+    }
+
     // Arranges minions on stage
     public void ArrangePositionsStatic()
     {
@@ -31,18 +41,13 @@ public class StageManager : MonoBehaviour
         List<float> xOffsets = Utility.CalculateXOffsets(minionsCount, offSet);
         // Offset each minion
         for (int index = 0; index < minionsCount; index++)
-        {
             MinionsOnStage[index].SetLocalPosX(xOffsets[index]);
-        }
     }
 
     public void StartNewTurn()
     {
         foreach (MinionController minion in MinionsOnStage)
-        {
             minion.RecoverAttackTimes();
-            minion.UpdateFrameHighlight();
-        }
     }
 
     public bool IsStageFull()
@@ -61,12 +66,5 @@ public class StageManager : MonoBehaviour
         return false;
     }
 
-    // Debug only
-    private void Start()
-    {
-        foreach (MinionCardData data in ToSpawn)
-        {
-            SummonMinion(data);
-        }
-    }
+    public void EndTurn() { }
 }
