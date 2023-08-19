@@ -44,12 +44,6 @@ public class StageManager : MonoBehaviour, ITurnAware
             MinionsOnStage[index].SetLocalPosX(xOffsets[index]);
     }
 
-    public void StartNewTurn()
-    {
-        foreach (MinionController minion in MinionsOnStage)
-            minion.RecoverAttackTimes();
-    }
-
     public bool IsStageFull()
     {
         return MinionsOnStage.Count >= MOS_CAP;
@@ -66,5 +60,15 @@ public class StageManager : MonoBehaviour, ITurnAware
         return false;
     }
 
-    public void EndTurn() { }
+    public void StartNewTurn()
+    {
+        foreach (MinionController minion in MinionsOnStage)
+            minion.StartNewTurn();
+    }
+
+    public void EndTurn() 
+    {
+        foreach (MinionController minion in MinionsOnStage)
+            minion.EndTurn();
+    }
 }

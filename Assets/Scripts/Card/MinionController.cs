@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionController : Attackable
+public class MinionController : Attackable, ITurnAware
 {
+    public float AttackAnimationSpeed = 2f;
     private MinionDisplayComponent _minionDisplayComponent;
     private MinionCardData _minionData;
     private int _maxAttackTimes;
@@ -43,10 +44,15 @@ public class MinionController : Attackable
         return _curAttackTimes > 0;
     }
 
+    private void SetCurAttackTimes(int value)
+    {
+        _curAttackTimes = value;
+        UpdateFrameHighlight();
+    }
+
     public void RecoverAttackTimes()
     {
-        _curAttackTimes = _maxAttackTimes;
-        UpdateFrameHighlight();
+        SetCurAttackTimes(_maxAttackTimes);
     }
 
     public void Attack(Attackable target)
@@ -56,8 +62,7 @@ public class MinionController : Attackable
             StartCoroutine(AttackAnimation(target, target.transform.position));
             target.TakeDamage(attackValue);
             TakeDamage(target.attackValue);
-            _curAttackTimes--;
-            UpdateFrameHighlight();
+            SetCurAttackTimes(_curAttackTimes - 1);
         }
     }
 
@@ -83,7 +88,7 @@ public class MinionController : Attackable
     {
         GameManager.instance.LockDragging(true); // lock dragging before animation finishes
         Vector3 initPos = gameObject.transform.position;
-        Vector3 dirVector = (targetPos - initPos).normalized;
+        Vector3 dirVector = (targetPos - initPos).normalized * AttackAnimationSpeed;
         while ((gameObject.transform.position - targetPos).magnitude > 1)
         {
             gameObject.transform.position += dirVector;
@@ -97,5 +102,15 @@ public class MinionController : Attackable
         }
         Shake();
         GameManager.instance.LockDragging(false);
+    }
+
+    public void StartNewTurn()
+    {
+        RecoverAttackTimes();
+    }
+
+    public void EndTurn()
+    {
+        SetCurAttackTimes(0);
     }
 }
