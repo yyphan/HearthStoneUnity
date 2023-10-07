@@ -11,7 +11,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
-        if (GameManager.instance.IsDraggingLocked())
+        if (GameManager.instance.IsDraggingLocked)
         {
             eventData.pointerDrag = null;
             return;
@@ -22,7 +22,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (GameManager.instance.IsDraggingLocked())
+        if (GameManager.instance.IsDraggingLocked)
         {
             eventData.pointerDrag = null;
             return;
@@ -32,7 +32,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        if (GameManager.instance.IsDraggingLocked())
+        if (GameManager.instance.IsDraggingLocked)
         {
             eventData.pointerDrag = null;
             return;

@@ -58,7 +58,7 @@ public class PlayerStageManager : StageManager
 
     private bool ShouldRespondToDraggingMinion()
     {
-        if (GameManager.instance.IsDraggingLocked())
+        if (GameManager.instance.IsDraggingLocked)
             return false;
 
         if (IsMouseWithinDropZone() == false)

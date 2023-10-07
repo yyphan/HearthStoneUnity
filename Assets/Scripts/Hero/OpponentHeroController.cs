@@ -53,7 +53,7 @@ public class OpponentHeroController : HeroController
 
         yield return new WaitForSeconds(1.5f);
 
-        GameManager.instance.EndTurn();
+        GameManager.instance.NextTurn();
     }
 
     private IEnumerator Taunt(string message)

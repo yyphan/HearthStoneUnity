@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public GlobalUIManager UIManager;
 
     private Turn _curTurn;
-    private bool _isDraggingLocked = false;
+    public bool IsDraggingLocked { get; set; }
 
     private void Awake()
     {
@@ -31,10 +31,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _curTurn = Turn.Opponent;
-        EndTurn();
+        NextTurn();
     }
 
-    public void EndTurn()
+    public void NextTurn()
     {
         _curTurn = _curTurn == Turn.Player ? Turn.Opponent : Turn.Player;
         if (_curTurn == Turn.Player)
@@ -54,15 +54,5 @@ public class GameManager : MonoBehaviour
     public void ShowAlert(string message)
     {
         UIManager.ShowAlert(message);
-    }
-
-    public void LockDragging(bool shouldLock)
-    {
-        _isDraggingLocked = shouldLock;
-    }
-
-    public bool IsDraggingLocked()
-    {
-        return _isDraggingLocked;
     }
 }
