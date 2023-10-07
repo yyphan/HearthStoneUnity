@@ -22,12 +22,32 @@ public class MinionCardDisplayComponent : CardDisplayComponent
     public Sprite CardFrameRare_Highlight;
     public Sprite CardFrameLegendary_Highlight;
 
-    public override void SetupCardDisplay(CardData data)
+    public override void Init(CardData data)
     {
-        base.SetupCardDisplay(data);
-        MinionHPObject.SetText(((MinionCardData)data).HP.ToString());
-        MinionAtkObject.SetText(((MinionCardData)data).Attack.ToString());
-        switch (((MinionCardData)data).Rarity)
+        base.Init(data);
+        SetFrameHighlight(false);
+    }
+
+    public override void SetFrameHighlight(bool isActive)
+    {
+        base.SetFrameHighlight(isActive);
+        if (!_cardFrameActive || !_cardFrameInActive)
+        {
+            AssignFrameAssets();
+        }
+        CardFrameObject.sprite = isActive ? _cardFrameActive : _cardFrameInActive;
+    }
+
+    protected override void SetupDisplay()
+    {
+        base.SetupDisplay();
+        MinionHPObject.SetText(((MinionCardData)cardData).HP.ToString());
+        MinionAtkObject.SetText(((MinionCardData)cardData).Attack.ToString());
+    }
+
+    private void AssignFrameAssets()
+    {
+        switch (((MinionCardData)cardData).Rarity)
         {
             case CardRarity.BASIC:
                 _cardFrameInActive = CardFrameBasic;
@@ -46,12 +66,5 @@ public class MinionCardDisplayComponent : CardDisplayComponent
                 _cardFrameActive = CardFrameLegendary_Highlight;
                 break;
         }
-        SetFrameHighlight(false);
-    }
-
-    public override void SetFrameHighlight(bool isActive)
-    {
-        base.SetFrameHighlight(isActive);
-        CardFrameObject.sprite = isActive ? _cardFrameActive : _cardFrameInActive;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardBackDisplayComponent : CardDisplayComponent
 {
-    public override void SetupCardDisplay(CardData data)
+    public override void Init(CardData data)
     {
         cardData = data;
         // Do nothing, displaying card back only

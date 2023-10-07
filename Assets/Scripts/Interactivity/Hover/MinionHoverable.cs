@@ -7,7 +7,7 @@ public class MinionHoverable : Hoverable
     protected override void ShowView()
     {
         base.ShowView();
-        CardData cardData = GetComponentInParent<MinionDisplayComponent>().GetCardData();
+        CardData cardData = GetComponentInParent<MinionDisplayComponent>().CardData;
         CardViewManager.instance.ShowCardView(cardData, transform.position.x > Screen.width / 2);
     }
 

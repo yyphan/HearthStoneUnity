@@ -7,6 +7,7 @@ using TMPro;
 public class CardDisplayComponent : MonoBehaviour
 {
     protected CardData cardData;
+    public CardData CardData { get { return cardData; } }
 
     [Header("UI Objects")]
     public Image CardImageObject;
@@ -16,20 +17,19 @@ public class CardDisplayComponent : MonoBehaviour
     public TextMeshProUGUI CardCostObject;
 
 
-    public virtual void SetupCardDisplay(CardData data)
+    public virtual void Init(CardData data)
     {
-        CardImageObject.sprite = data.CardImage;
-        CardNameObject.SetText(data.CardName);
-        CardDescriptionObject.SetText(data.Description);
-        CardCostObject.SetText(data.Cost.ToString());
         cardData = data;
+        SetupDisplay();
     }
 
-    public CardData GetCardData()
+    protected virtual void SetupDisplay()
     {
-        return cardData;
+        CardImageObject.sprite = cardData.CardImage;
+        CardNameObject.SetText(cardData.CardName);
+        CardDescriptionObject.SetText(cardData.Description);
+        CardCostObject.SetText(cardData.Cost.ToString());
     }
-
 
     public virtual void SetFrameHighlight(bool isActive){ }
 }

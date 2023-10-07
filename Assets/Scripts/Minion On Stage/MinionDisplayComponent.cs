@@ -22,38 +22,47 @@ public class MinionDisplayComponent : MonoBehaviour
     public Sprite MinionFrameLegendaryTaunt;
     public Sprite MinionFrameLegendaryTauntHighlight;
 
-    protected CardData cardData;
+    protected MinionCardData cardData;
+    public MinionCardData CardData { get { return cardData; }  }
 
     private Sprite _minionFrameInActive;
     private Sprite _minionFrameActive;
 
-    public void SetupDisplay(CardData data)
+    public void Init(MinionCardData data)
     {
         cardData = data;
-        MinionHPObject.SetText(((MinionCardData)data).HP.ToString());
-        MinionAtkObject.SetText(((MinionCardData)data).Attack.ToString());
-        MinionImageObject.sprite = data.CardImage;
-        switch (((MinionCardData)data).Rarity)
-        {
-            case CardRarity.LEGENDARY:
-                _minionFrameInActive = ((MinionCardData)data).IsTaunt ? MinionFrameLegendaryTaunt : MinionFrameLegendary;
-                _minionFrameActive = ((MinionCardData)data).IsTaunt ? MinionFrameLegendaryTauntHighlight : MinionFrameLegendaryHighlight;
-                break;
-            default:
-                _minionFrameInActive = ((MinionCardData)data).IsTaunt ? MinionFrameTaunt : MinionFrameBasic;
-                _minionFrameActive = ((MinionCardData)data).IsTaunt ? MinionFrameTauntHighlight : MinionFrameBasicHighlight;
-                break;
-        }
+        SetupDisplay();
         SetFrameHighlight(false);
     }
 
-    public CardData GetCardData()
+    private void SetupDisplay()
     {
-        return cardData;
+        MinionHPObject.SetText(cardData.HP.ToString());
+        MinionAtkObject.SetText(cardData.Attack.ToString());
+        MinionImageObject.sprite = cardData.CardImage;
+    }
+
+    private void AssignFrameAssets()
+    {
+        switch (cardData.Rarity)
+        {
+            case CardRarity.LEGENDARY:
+                _minionFrameInActive = cardData.IsTaunt ? MinionFrameLegendaryTaunt : MinionFrameLegendary;
+                _minionFrameActive = cardData.IsTaunt ? MinionFrameLegendaryTauntHighlight : MinionFrameLegendaryHighlight;
+                break;
+            default:
+                _minionFrameInActive = cardData.IsTaunt ? MinionFrameTaunt : MinionFrameBasic;
+                _minionFrameActive = cardData.IsTaunt ? MinionFrameTauntHighlight : MinionFrameBasicHighlight;
+                break;
+        }
     }
 
     public void SetFrameHighlight(bool canMove)
     {
+        if (!_minionFrameActive || !_minionFrameInActive)
+        {
+            AssignFrameAssets();
+        }
         MinionFrameObject.sprite = canMove ? _minionFrameActive : _minionFrameInActive;
     }
 }

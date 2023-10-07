@@ -40,9 +40,9 @@ public class HeroController : Attackable, ITurnAware
 
     public void PlayCard(CardDisplayComponent card)
     {
-        HeroManaController.CostMana(card.GetCardData().Cost);
+        HeroManaController.CostMana(card.CardData.Cost);
         HeroHands.RemoveCard(card);
-        SummonMinion((MinionCardData)card.GetCardData());
+        SummonMinion((MinionCardData)card.CardData);
     }
 
     public bool CanPlayCard(CardDisplayComponent card)
@@ -50,7 +50,7 @@ public class HeroController : Attackable, ITurnAware
         if (HeroStageManager.IsStageFull())
             return false;
 
-        int cost = card.GetCardData().Cost;
+        int cost = card.CardData.Cost;
         if (HeroManaController.CanCostMana(cost) == false)
             return false;
 

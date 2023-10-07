@@ -19,12 +19,12 @@ public class CardViewManager : MonoBehaviour
     {
         if (showLeft)
         {
-            leftView.SetupCardDisplay(cardData);
+            leftView.Init(cardData);
             leftView.gameObject.SetActive(true);
         }
         else
         {
-            rightView.SetupCardDisplay(cardData);
+            rightView.Init(cardData);
             rightView.gameObject.SetActive(true);
         }
     }

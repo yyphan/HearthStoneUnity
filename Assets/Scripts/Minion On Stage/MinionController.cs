@@ -26,7 +26,7 @@ public class MinionController : Attackable, ITurnAware
     public void Initialize(MinionCardData minionData)
     {
         _minionData = minionData;
-        _minionDisplayComponent.SetupDisplay(_minionData);
+        _minionDisplayComponent.Init(_minionData);
         attackValue = _minionData.Attack;
         _maxAttackTimes = _minionData.MaxAttackTimes;
         healthComponent.Init(_minionData.HP);

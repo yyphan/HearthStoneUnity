@@ -7,7 +7,7 @@ public class CardHoverable : Hoverable
     protected override void ShowView()
     {
         base.ShowView();
-        CardData cardData = GetComponentInParent<CardDisplayComponent>().GetCardData();
+        CardData cardData = GetComponentInParent<CardDisplayComponent>().CardData;
         CardViewManager.instance.ShowCardView(cardData, transform.position.x > Screen.width / 2);
     }
 

@@ -23,7 +23,7 @@ public class Hands : MonoBehaviour
 
         GameObject CardObject = Instantiate(MinionCardPrefab, transform, false);
         CardDisplayComponent cardDisplay = CardObject.GetComponent<CardDisplayComponent>();
-        cardDisplay.SetupCardDisplay(data);
+        cardDisplay.Init(data);
         _cardsInHand.Add(cardDisplay);
         RearrangeHands();
         return true;
@@ -55,6 +55,6 @@ public class Hands : MonoBehaviour
     public void SetHighlightBasedOnMana(int curMana)
     {
         foreach (CardDisplayComponent card in _cardsInHand)
-            card.SetFrameHighlight(card.GetCardData().Cost <= curMana);
+            card.SetFrameHighlight(card.CardData.Cost <= curMana);
     }
 }
