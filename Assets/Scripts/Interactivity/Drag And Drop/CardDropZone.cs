@@ -26,6 +26,6 @@ public class CardDropZone : MonoBehaviour, IDropHandler
         if (PlayerStageManager.instance.IsStageFull())
             return;
         
-        eventData.pointerDrag.GetComponent<MinionCardDraggable>().SetIsDragValid(true);
+        eventData.pointerDrag.GetComponent<MinionCardDraggable>().IsDragValid = true;
     }
 }

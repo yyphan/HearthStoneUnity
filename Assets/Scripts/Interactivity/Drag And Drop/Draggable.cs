@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     protected bool _isDragValid = false;
+    public bool IsDragValid { set { _isDragValid = value; } }
     private Vector3 _initialPosition;
 
     public virtual void OnBeginDrag(PointerEventData eventData)
@@ -42,10 +43,5 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     protected void ResetPosition()
     {
         gameObject.transform.position = _initialPosition;
-    }
-
-    public void SetIsDragValid(bool isValid)
-    {
-        _isDragValid = isValid;
     }
 }   

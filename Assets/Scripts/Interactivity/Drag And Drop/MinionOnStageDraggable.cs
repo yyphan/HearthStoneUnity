@@ -21,7 +21,7 @@ public class MinionOnStageDraggable : Draggable
             return;
         }
         base.OnBeginDrag(eventData);
-        SetIsDragValid(false);
+        IsDragValid = false;
     }
 
     public override void OnEndDrag(PointerEventData eventData)

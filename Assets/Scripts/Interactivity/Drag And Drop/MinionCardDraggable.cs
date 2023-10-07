@@ -11,7 +11,7 @@ public class MinionCardDraggable : Draggable
     {
         base.OnBeginDrag(eventData);
         CardBeingDragged = gameObject.GetComponent<MinionCardDisplayComponent>();
-        SetIsDragValid(false);
+        IsDragValid = false;
     }
 
     public override void OnEndDrag(PointerEventData eventData)
