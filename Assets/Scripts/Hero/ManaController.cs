@@ -7,7 +7,7 @@ public class ManaController : MonoBehaviour, ITurnAware
 {
     public TextMeshProUGUI UIText;
     public List<GameObject> UIGems;
-    public bool DisplayUI = true;
+    public bool IsPlayer = true;
 
     private int _curMana = 0;
     private int _availMana = 0;
@@ -34,29 +34,33 @@ public class ManaController : MonoBehaviour, ITurnAware
         return _curMana >= cost;
     }
 
-    protected void SetCurMana(int value)
+    private void SetCurMana(int value)
     {
         _curMana = value;
         UpdateUI();
     }
 
-    protected void GrowMana()
+    private void GrowMana()
     {
         _availMana = Mathf.Min(MAX_MANA, _availMana + 1);
         SetCurMana(_availMana);
     }
 
-    protected void UpdateUI()
+    private void UpdateUI()
     {
-        if (!DisplayUI)
-            return;
-        UIText.SetText(MANA_TEXT_TEMPLATE, _curMana, _availMana);
-        for (int i = 0; i < MAX_MANA; i++)
+        if (IsPlayer)
         {
-            UIGems[i].SetActive(i < _curMana);
-        }
+            UIText.SetText(MANA_TEXT_TEMPLATE, _curMana, _availMana);
+            for (int i = 0; i < MAX_MANA; i++)
+            {
+                UIGems[i].SetActive(i < _curMana);
+            }
 
-        // Update playable cards
-        PlayerHeroController.instance.UpdatePlayableCards(_curMana);
+            PlayerHeroController.instance.UpdatePlayableCards(_curMana);
+        }
+        else
+        {
+            UIText.SetText(MANA_TEXT_TEMPLATE, _curMana, _availMana);
+        }
     }
 }

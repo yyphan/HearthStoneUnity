@@ -21,10 +21,7 @@ public class Hands : MonoBehaviour
         if (_cardsInHand.Count >= MAX_CARDS_AT_HAND) // card is burnt
             return true;
 
-        GameObject CardObject = Instantiate(MinionCardPrefab, transform, false);
-        CardDisplayComponent cardDisplay = CardObject.GetComponent<CardDisplayComponent>();
-        cardDisplay.Init(data);
-        _cardsInHand.Add(cardDisplay);
+        AddCardToHands(data);
         RearrangeHands();
         return true;
     }
@@ -55,6 +52,16 @@ public class Hands : MonoBehaviour
     public void SetHighlightBasedOnMana(int curMana)
     {
         foreach (CardDisplayComponent card in _cardsInHand)
+        {
             card.SetFrameHighlight(card.CardData.Cost <= curMana);
+        }
+    }
+
+    private void AddCardToHands(CardData data)
+    {
+        GameObject CardObject = Instantiate(MinionCardPrefab, transform, false);
+        CardDisplayComponent cardDisplay = CardObject.GetComponent<CardDisplayComponent>();
+        cardDisplay.Init(data);
+        _cardsInHand.Add(cardDisplay);
     }
 }
