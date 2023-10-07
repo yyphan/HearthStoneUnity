@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour, ITurnAware
 
     private const int MOS_CAP = 7;
 
-    public void SummonMinion(MinionCardData data)
+    public void SpawnMinion(MinionCardData data)
     {
         GameObject newMinion = Instantiate(MinionPrefab, transform);
         MinionController minionController = newMinion.GetComponent<MinionController>();

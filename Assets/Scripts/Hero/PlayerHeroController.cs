@@ -23,6 +23,6 @@ public class PlayerHeroController : HeroController
     protected override void SummonMinion(MinionCardData card)
     {
         base.SummonMinion(card);
-        PlayerStageManager.instance.SummonMinion(card);
+        PlayerStageManager.instance.SpawnMinion(card);
     }
 }

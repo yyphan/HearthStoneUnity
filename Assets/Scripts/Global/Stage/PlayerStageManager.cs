@@ -19,10 +19,17 @@ public class PlayerStageManager : StageManager
             Debug.LogError("PlayerStageManager: expected CardDropZone in children but not found");
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (ShouldRespondToDraggingMinion())
+            ArrangePositionDynamic(Input.mousePosition.x);
+    }
+
     // Arranges minions on stage as player tries to put on another minion
     private void ArrangePositionDynamic(float mouseX)
     {
-        if (PlayerStageManager.instance.IsStageFull())
+        if (instance.IsStageFull())
             return;
 
         int potentialMinionsCount = MinionsOnStage.Count + 1;
@@ -49,19 +56,20 @@ public class PlayerStageManager : StageManager
             && Mathf.Abs(Input.mousePosition.y - _cardDropZone.transform.position.y) < _cardDropZone.DropZoneOffsetY;
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool ShouldRespondToDraggingMinion()
     {
         if (GameManager.instance.IsDraggingLocked())
-            return;
+            return false;
 
         if (IsMouseWithinDropZone() == false)
-            return;
+            return false;
 
         if (MinionCardDraggable.CardBeingDragged == null)
-            return;
+            return false;
 
-        if (PlayerHeroController.instance.CanPlayCard(MinionCardDraggable.CardBeingDragged))
-            ArrangePositionDynamic(Input.mousePosition.x);
+        if (!PlayerHeroController.instance.CanPlayCard(MinionCardDraggable.CardBeingDragged))
+            return false;
+
+        return true;
     }
 }

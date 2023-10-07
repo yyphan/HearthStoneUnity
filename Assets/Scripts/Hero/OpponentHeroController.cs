@@ -36,7 +36,7 @@ public class OpponentHeroController : HeroController
     protected override void SummonMinion(MinionCardData card)
     {
         base.SummonMinion(card);
-        OpponentStageManager.instance.SummonMinion(card);
+        OpponentStageManager.instance.SpawnMinion(card);
     }
 
     private IEnumerator PretendToThink()
