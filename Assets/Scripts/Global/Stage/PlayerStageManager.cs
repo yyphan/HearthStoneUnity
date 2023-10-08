@@ -23,15 +23,14 @@ public class PlayerStageManager : StageManager
     void Update()
     {
         if (ShouldRespondToDraggingMinion())
+        {
             ArrangePositionDynamic(Input.mousePosition.x);
+        }
     }
 
     // Arranges minions on stage as player tries to put on another minion
     private void ArrangePositionDynamic(float mouseX)
     {
-        if (instance.IsStageFull())
-            return;
-
         int potentialMinionsCount = MinionsOnStage.Count + 1;
         List<float> xOffsets = Utility.CalculateXOffsets(potentialMinionsCount, offSet);
 
@@ -68,6 +67,9 @@ public class PlayerStageManager : StageManager
             return false;
 
         if (!PlayerHeroController.instance.CanPlayCard(MinionCardDraggable.CardBeingDragged))
+            return false;
+
+        if (instance.IsStageFull())
             return false;
 
         return true;

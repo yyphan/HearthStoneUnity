@@ -17,21 +17,28 @@ public class MinionCardDraggable : Draggable
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-        if (_isDragValid)
+        if (_isDragValid && CardBeingDragged && PlayerHeroController.instance.CanPlayCard(CardBeingDragged))
         {
-            MinionCardDisplayComponent cardDisplay = gameObject.GetComponent<MinionCardDisplayComponent>();
-            if (cardDisplay == null)
-                Debug.LogError("CardDraggable: CardDisplay not found");
-            if (PlayerHeroController.instance.CanPlayCard(cardDisplay))
-            {
-                PlayerHeroController.instance.PlayCard(cardDisplay);
-                Destroy(gameObject);
-                return;
-            }
+            OnValidDrag();
         }
 
+        OnInvalidDrag();
+    }
+
+    protected override void OnInvalidDrag()
+    {
+        base.OnInvalidDrag();
         ResetPosition();
         PlayerStageManager.instance.ArrangePositionsStatic();
+
+        CardBeingDragged = null;
+    }
+
+    protected override void OnValidDrag()
+    {
+        base.OnValidDrag();
+        PlayerHeroController.instance.PlayCard(CardBeingDragged);
+        Destroy(gameObject);
 
         CardBeingDragged = null;
     }

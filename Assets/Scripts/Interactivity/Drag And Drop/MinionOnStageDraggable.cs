@@ -27,14 +27,25 @@ public class MinionOnStageDraggable : Draggable
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-        ResetPosition();
         if (_isDragValid)
         {
-            GetComponentInParent<MinionController>().Attack(_target);
+            OnValidDrag();
         }
-        else
-        {
-            PlayerStageManager.instance.ArrangePositionsStatic();
-        }
+
+        OnInvalidDrag();
+    }
+
+    protected override void OnValidDrag()
+    {
+        base.OnValidDrag();
+        ResetPosition();
+        GetComponentInParent<MinionController>().Attack(_target);
+    }
+
+    protected override void OnInvalidDrag()
+    {
+        base.OnInvalidDrag();
+        ResetPosition();
+        PlayerStageManager.instance.ArrangePositionsStatic();
     }
 }

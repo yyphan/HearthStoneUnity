@@ -41,7 +41,9 @@ public class StageManager : MonoBehaviour, ITurnAware
         List<float> xOffsets = Utility.CalculateXOffsets(minionsCount, offSet);
         // Offset each minion
         for (int index = 0; index < minionsCount; index++)
+        {
             MinionsOnStage[index].SetLocalPosX(xOffsets[index]);
+        }
     }
 
     public bool IsStageFull()

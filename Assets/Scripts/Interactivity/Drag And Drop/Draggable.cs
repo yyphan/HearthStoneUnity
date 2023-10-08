@@ -44,4 +44,14 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         gameObject.transform.position = _initialPosition;
     }
+
+    protected virtual void OnValidDrag()
+    {
+
+    }
+
+    protected virtual void OnInvalidDrag()
+    {
+
+    }
 }   
